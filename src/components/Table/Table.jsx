@@ -24,12 +24,12 @@ function Table() {
         updateElements()
     }, [data]);
 
-    // useEffect(() => {
-    //     const ws = new WebSocket("ws://192.168.1.106:8888");
-    //     ws.onopen = () => console.log("ws opened.");
-    //     ws.onclose = () => console.log("ws closed.");
-    //     ws.onmessage = e => updateData(e);
-    // }, []);
+    useEffect(() => {
+        const ws = new WebSocket("ws://192.168.1.106:8888");
+        ws.onopen = () => console.log("ws opened.");
+        ws.onclose = () => console.log("ws closed.");
+        ws.onmessage = e => updateData(e);
+    }, []);
 
     function updateData(e) {
         console.log("New Data: " + e.data);
