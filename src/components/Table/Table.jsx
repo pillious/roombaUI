@@ -33,8 +33,30 @@ function Table() {
 
     function updateData(e) {
         console.log("New Data: " + e.data);
-        var newData = [{name: "New 1", value: 534}, {name: "New 2", value: 75}, {name: "New 3", value: 343}, {name: "New 4", value: -1233}]
-        setData(newData);
+        var rawData;
+        try {
+            rawData = JSON.parse(e.data);
+
+            if (rawData) {
+                var newData = [];
+    
+                var keys = Object.keys(rawData);
+                var values = Object.values(rawData);
+        
+                for (let i = 0; i < keys.length; i++) {
+                    let obj = {};
+                    obj["name"] = keys[i];
+                    obj["value"] = values[i];
+                    newData.push(obj);
+                }
+        
+                // var newData = [{name: "New 1", value: 534}, {name: "New 2", value: 75}, {name: "New 3", value: 343}, {name: "New 4", value: -1233}]
+                setData(newData);
+            }
+        }
+        catch(err) {
+
+        }
     }
 
     return (
