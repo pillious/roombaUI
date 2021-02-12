@@ -1,0 +1,12 @@
+Form {
+    padding-bottom: 1rem;
+}
+
+.submitButtonWrapper {
+    display: inline-block;
+    margin-left: 0.75rem;
+}
+
+.submitButtonWrapper Button {
+    font-size: 0.875rem;
+}
