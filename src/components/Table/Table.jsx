@@ -46,7 +46,7 @@ function Table() {
                 for (let i = 0; i < keys.length; i++) {
                     let obj = {};
                     obj["name"] = keys[i];
-                    obj["value"] = values[i];
+                    obj["value"] = values[i].toString();
                     newData.push(obj);
                 }
         
