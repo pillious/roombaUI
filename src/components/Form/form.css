@@ -2,11 +2,24 @@ Form {
     padding-bottom: 1rem;
 }
 
+Input {
+    margin-right: 0.75rem;
+}
+
+.btnGroup {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 .submitButtonWrapper {
     display: inline-block;
-    margin-left: 0.75rem;
 }
 
 .submitButtonWrapper Button {
     font-size: 0.875rem;
+}
+
+.btnGroup Button{
+    margin: 0 0.25rem 0.25rem 0;
 }

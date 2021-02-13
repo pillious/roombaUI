@@ -1,53 +1,35 @@
 import React from "react";
 import {useState, useEffect} from "react";
-import axios from "axios";
 import Input from "./Input";
 import Submit from "./Submit";
 import Toggle from "./Toggle";
-
-// POST: {'command': INPUT_VALUE}
+import ButtonGroup from "./ButtonGroup";
+import * as api from "../../services/api";
 
 function Form() {
 
     const [inputValue, setInputValue] = useState("");
-    const [updateDataState, setUpdateDataState] = useState(false);
     const [isLightOn, setIsLightOn] = useState(false);
 
-    function onChange(value) {
-        setInputValue(value);
-    }
-
-    async function onSubmit(e) {
+    function onSubmit(e) {
         e.preventDefault();
-
-        console.log("submitting: " + inputValue);
-        var result = await axios.post("http://192.168.1.106:3000/api", {"command": inputValue});
-        console.log(result.data);
-
-        onChange("");
+        api.sendCommand(inputValue);
+        setInputValue("");
     }
 
-    function toggleLightState() {
-        setIsLightOn(!isLightOn);
-    }
-
-    useEffect(async () => {
-        console.log("isLightOn: " +  isLightOn); 
-
+    useEffect(() => {
         var command = isLightOn ? "ON" : "OFF";
-
-        var result = await axios.post("http://192.168.1.106:3000/api", {"command": command});
-        console.log(result.data);
-
+        api.toggleLight(command);
     }, [isLightOn]);
 
     return (
         <div>
-            <form>
-                <Input value={inputValue} onChange={onChange}></Input>
-                <Submit onSubmit={onSubmit}></Submit>
-            </form>
-            <Toggle onToggle={toggleLightState} checked={isLightOn} value="on" color="primary"></Toggle>
+            <div>
+                <Input value={inputValue} onChange={(value) => setInputValue(value)}></Input>
+                <Submit onSubmit={onSubmit} command="test" text="send" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
+            </div>
+            <Toggle onToggle={() => setIsLightOn(!isLightOn)} checked={isLightOn} value="on"></Toggle>
+            <ButtonGroup onClick={(command) => console.log(command)}></ButtonGroup>
         </div>
     );
 

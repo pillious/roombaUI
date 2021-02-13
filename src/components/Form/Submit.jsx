@@ -1,19 +1,21 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import "./form.css";
 
-const SubmitButton = withStyles({
-    root: {
-        backgroundColor: "#ffb300",
-        color: "#fff",
+const useStyles = makeStyles({
+    btnStyle: {
+        backgroundColor: props => props.bgColor,
+        color: props => props.textColor,
         "&:hover": {
-            backgroundColor: "#ffa000",
+            backgroundColor: props => props.bgColorHover,
         },
     },
-})(Button);
+});
 
 function Submit(props) {
+
+    const {btnStyle} = useStyles(props);
 
     function handleSubmit(e) {
         props.onSubmit(e);
@@ -21,7 +23,7 @@ function Submit(props) {
 
     return (
         <div className="submitButtonWrapper">
-            <SubmitButton type="submit" onClick={handleSubmit} variant="contained" size="large">Send</SubmitButton>
+            <Button className={btnStyle} onClick={handleSubmit} variant="contained" size="small">{props.text}</Button>
         </div>
     );
 }
