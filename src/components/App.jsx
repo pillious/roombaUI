@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import Header from "./Header/Header";
 import Form from "./Form/Form";
 import Table from "./Table/Table";
 import "./App.css";
@@ -13,9 +14,8 @@ const THEME = createMuiTheme({
 
 function App() {
 
-  const [data, setData] = useState(
-    [{name: "Reading 1", value: 10}, {name: "Reading 2", value: 35}, {name: "Reading 3", value: -43}, {name: "Reading 4", value: 481}]
-  );
+  const [tableData, setTableData] = useState([]);
+  const [headerData, setHeaderData] = useState([]);
 
   // runs once to initialize websocket.
   useEffect(() => {
@@ -31,7 +31,8 @@ function App() {
    */
   function updateData(e) {
     var result = api.parseData(e.data);
-    setData(result);
+    setTableData(result.tableData);
+    setHeaderData(result.headerData);
   }
 
   /**
@@ -44,9 +45,10 @@ function App() {
 
   return (
     <MuiThemeProvider theme={THEME}>
+      <Header data={headerData}></Header>
       <div className="body">
         <Form onSubmit={handleSubmit}></Form>
-        <Table data={data}></Table>
+        <Table data={tableData}></Table>
       </div>
     </MuiThemeProvider>
   );

@@ -1,0 +1,17 @@
+:root {
+    font-family: "Montserrat", sans-serif;
+}
+
+.div-header-wrapper {
+    display: flex;
+    
+}
+
+.div-header-wrapper .header {
+    flex: 1;
+    display: flex;
+}
+
+.div-header-wrapper .header div{
+    margin: auto;
+}

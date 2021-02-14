@@ -11,10 +11,14 @@ function Form() {
     const [inputValue, setInputValue] = useState("");
     const [isLightOn, setIsLightOn] = useState(false);
 
-    function onSubmit(e) {
-        e.preventDefault();
-        api.sendCommand(inputValue);
-        setInputValue("");
+    function handleSubmit(command) {
+        if (command === "custom") {
+            api.sendCommand(inputValue);
+            setInputValue("");
+        }
+        else {
+            api.sendCommand(command);
+        }
     }
 
     useEffect(() => {
@@ -26,10 +30,10 @@ function Form() {
         <div>
             <div>
                 <Input value={inputValue} onChange={(value) => setInputValue(value)}></Input>
-                <Submit onSubmit={onSubmit} command="test" text="send" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
+                <Submit onSubmit={handleSubmit} command="custom" label="send" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
             </div>
             <Toggle onToggle={() => setIsLightOn(!isLightOn)} checked={isLightOn} value="on"></Toggle>
-            <ButtonGroup onClick={(command) => console.log(command)}></ButtonGroup>
+            <ButtonGroup onClick={handleSubmit}></ButtonGroup>
         </div>
     );
 

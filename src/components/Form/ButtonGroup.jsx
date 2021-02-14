@@ -4,18 +4,20 @@ import "./form.css"
 
 function ButtonGroup(props) {
 
+    function handleSubmit(command) {
+        props.onClick(command);
+    }
+
     return (
         <div className="btnGroup">
-            <Submit onSubmit={() => props.onClick(1)} text="test1" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
-            <Submit onSubmit={() => props.onClick(1)} text="test2" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
-            <Submit onSubmit={() => props.onClick(1)} text="test3" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
-            <Submit onSubmit={() => props.onClick(1)} text="test4" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
-            <Submit onSubmit={() => props.onClick(1)} text="test5" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
-            <Submit onSubmit={() => props.onClick(1)} text="test6" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
-            <Submit onSubmit={() => props.onClick(1)} text="test7" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
-            <Submit onSubmit={() => props.onClick(1)} text="test8" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
-            <Submit onSubmit={() => props.onClick(1)} text="test9" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
-            <Submit onSubmit={() => props.onClick(1)} text="test10" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
+            <Submit onSubmit={handleSubmit} command="RESET" label="RESET" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
+            <Submit onSubmit={handleSubmit} command="DOCK" label="DOCK" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
+            <Submit onSubmit={handleSubmit} command="CLEAN" label="CLEAN" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
+            <Submit onSubmit={handleSubmit} command="FULL" label="FULL" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
+            <Submit onSubmit={handleSubmit} command="PASSIVE" label="PASSIVE" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
+            <Submit onSubmit={handleSubmit} command="SAFE" label="SAFE" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
+            <Submit onSubmit={handleSubmit} command="OFF" label="OFF" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
+            <Submit onSubmit={handleSubmit} command="WAKEUP" label="WAKEUP" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
         </div>        
     );
 }

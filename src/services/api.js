@@ -5,7 +5,6 @@ import axios from "axios";
  * @param {*} rawDataStr raw data coming from websocket event as a string
  */
 export function parseData(rawDataStr) {
-    // console.log("New Data: " + rawDataStr);
     var data = [];
     try {
         var rawDataJson = JSON.parse(rawDataStr);
@@ -20,14 +19,33 @@ export function parseData(rawDataStr) {
                 obj["value"] = values[i].toString();
                 data.push(obj);
             }
-
-            //data = [{name: "New 1", value: 534}, {name: "New 2", value: 75}, {name: "New 3", value: 343}, {name: "New 4", value: -1233}]
         }
     } catch (err) {
 
     }
 
-    return data;
+    var sortedData = splitData(data);  
+    return sortedData;
+}
+
+// split the data into header & table data
+function splitData(data) {
+    var tableData = [];
+    var headerData = [];
+
+    // objects to move from the table to header 
+    var remove = ["isAlive", "oiMode", "chargingState", "voltage", "current", "batteryCharge"];
+
+    for (let i = 0; i < data.length; i++) {
+        if (remove.includes(data[i].name)) {
+            headerData.push(data[i]);
+        }
+        else {
+            tableData.push(data[i]);
+        }
+    }
+
+    return {"tableData": tableData, "headerData": headerData};
 }
 
 export async function toggleLight(command) {

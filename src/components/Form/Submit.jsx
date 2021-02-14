@@ -17,13 +17,13 @@ function Submit(props) {
 
     const {btnStyle} = useStyles(props);
 
-    function handleSubmit(e) {
-        props.onSubmit(e);
+    function handleSubmit(command) {
+        props.onSubmit(command);
     }
 
     return (
         <div className="submitButtonWrapper">
-            <Button className={btnStyle} onClick={handleSubmit} variant="contained" size="small">{props.text}</Button>
+            <Button className={btnStyle} onClick={() => handleSubmit(props.command)} variant="contained" size="small">{props.label}</Button>
         </div>
     );
 }
