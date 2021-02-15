@@ -3,6 +3,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Header from "./Header/Header";
 import Form from "./Form/Form";
 import Table from "./Table/Table";
+import Controls from "./Controls/Controls";
 import "./App.css";
 import * as api from "../services/api";
 
@@ -16,6 +17,9 @@ function App() {
 
   const [tableData, setTableData] = useState([]);
   const [headerData, setHeaderData] = useState([]);
+
+  const [inputValue, setInputValue] = useState("");
+  const [isLightOn, setIsLightOn] = useState(false);
 
   // runs once to initialize websocket.
   useEffect(() => {
@@ -39,16 +43,45 @@ function App() {
    * Handle the on-click button from body component.
    * This is where the HTTP:POST will be handled.
    */
-  function handleSubmit(command) {
-    console.log("Handle Submit: " + command);
+  function onSubmit(command) {
+    if (command === "custom") {
+      api.sendCommand(inputValue.toUpperCase());
+      setInputValue("");
+    }
+    else {
+      api.sendCommand(command.toUpperCase());
+    }
+  }
+
+  // save the state of the light when button toggled
+  function onLightToggle() {
+    setIsLightOn(!isLightOn);
+  }
+
+  // when the light state is updated, send command to server
+  useEffect(() => {
+    var command = isLightOn ? "On" : "Off";
+    api.toggleLight(command);
+  }, [isLightOn]);
+
+
+  // save the value of the custom command input
+  function onInputChange(value) {
+    setInputValue(value);
+  }
+
+  function onMovementChange(direction, speed, command) {
+    // api.sendCommand();
+    console.log({direction: direction, speed: speed, command: command});
   }
 
   return (
     <MuiThemeProvider theme={THEME}>
       <Header data={headerData}></Header>
       <div className="body">
-        <Form onSubmit={handleSubmit}></Form>
+        <Form onSubmit={onSubmit} onInputChange={onInputChange} onLightToggle={onLightToggle} isLightOn={isLightOn} inputValue={inputValue}></Form>
         <Table data={tableData}></Table>
+        <Controls onMovementChange={onMovementChange}></Controls>
       </div>
     </MuiThemeProvider>
   );

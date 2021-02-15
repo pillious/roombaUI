@@ -12,7 +12,7 @@ function Header(props) {
         var arr2 = [];
 
         for (let i = 0; i < props.data.length; i++) {
-            if (["isAlive", "oiMode"].includes(props.data[i].name)) {
+            if (["isHomeBase", "chargingState", "oiMode", "isAlive"].includes(props.data[i].name)) {
                 arr1.push(props.data[i]);
             }
             else {

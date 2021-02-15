@@ -34,7 +34,7 @@ function splitData(data) {
     var headerData = [];
 
     // objects to move from the table to header 
-    var remove = ["isAlive", "oiMode", "chargingState", "voltage", "current", "batteryCharge"];
+    var remove = ["isAlive", "oiMode", "isHomeBase", "chargingState", "voltage", "current", "temperature", "batteryCharge", "batteryCapacity"];
 
     for (let i = 0; i < data.length; i++) {
         if (remove.includes(data[i].name)) {
@@ -52,7 +52,7 @@ export async function toggleLight(command) {
         // var result = await axios.post("http://192.168.1.106:3000/api", {"command": command});
         // console.log(result.data);
 
-        console.log("light toggled... (temp)");
+        console.log("light toggled... (temp): " + command);
         // return result.data;
 }
 
