@@ -1,10 +1,14 @@
+.body {
+    padding: 1rem 0;
+}
+
 .tableWrapper {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    flex: 1;
     font-family: "Montserrat", sans-serif;
     border-collapse: collapse;
-    margin: 1rem 0;
 }
 
 .elementWrapper {

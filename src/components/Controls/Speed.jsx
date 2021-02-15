@@ -4,7 +4,10 @@ import Slider from "@material-ui/core/Slider";
 
 const useStyles = makeStyles({
     root: {
-      height: 150,
+      height: 125,
+    },
+    sliderLabel: {
+      paddingBottom: 5,
     },
 });
 
@@ -24,11 +27,11 @@ function Speed(props) {
       
     return (
         <div className={classes.root}>
-            <div>Speed</div>
+            <div className={classes.sliderLabel}>Speed</div>
             <Slider
             orientation="vertical"
             defaultValue={40}
-            valueLabelDisplay="on"
+            valueLabelDisplay="auto"
             onChangeCommitted={(event, value) => props.onSpeedChange(value)}
             min={0}
             max={100}

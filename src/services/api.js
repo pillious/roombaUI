@@ -21,7 +21,7 @@ export function parseData(rawDataStr) {
             }
         }
     } catch (err) {
-
+        console.log(err);
     }
 
     var sortedData = splitData(data);  
@@ -30,20 +30,23 @@ export function parseData(rawDataStr) {
 
 // split the data into header & table data
 function splitData(data) {
-    var tableData = [];
-    var headerData = [];
 
-    // objects to move from the table to header 
-    var remove = ["isAlive", "oiMode", "isHomeBase", "chargingState", "voltage", "current", "temperature", "batteryCharge", "batteryCapacity"];
+    var tableData = {};
+    var headerData = {};
+
+    // these are the values use in the header
+    var forHeader = ["isAlive", "oiMode", "isHomeBase", "chargingState", "voltage", "current", "temperature", "batteryCharge", "batteryCapacity"];
 
     for (let i = 0; i < data.length; i++) {
-        if (remove.includes(data[i].name)) {
-            headerData.push(data[i]);
+        if (forHeader.includes(data[i].name)) {
+            headerData[data[i].name] = data[i].value;
         }
         else {
-            tableData.push(data[i]);
+            tableData[data[i].name] = data[i].value;
         }
     }
+
+    // console.log(tableData);
 
     return {"tableData": tableData, "headerData": headerData};
 }
@@ -58,8 +61,8 @@ export async function toggleLight(command) {
 
 export async function sendCommand(command) {
     console.log("submitting command: " + command);
-    var result = await axios.post("http://192.168.1.106:3000/api", {"command": command});
-    console.log(result.data);
+    // var result = await axios.post("http://192.168.1.106:3000/api", {"command": command});
+    // console.log(result.data);
 
-    return result;
+    // return result;
 }

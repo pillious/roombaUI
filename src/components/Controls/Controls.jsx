@@ -1,10 +1,11 @@
 import React, {useState, useEffect, useCallback} from "react";
-import Arrow from "./Arrow";
-import Speed from "./Speed";
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+import Arrow from "./Arrow";
+import Speed from "./Speed";
+import "./controls.css";
 
 function Controls(props) {
     const [doForward, setDoForward] = useState(false);
@@ -107,12 +108,18 @@ function Controls(props) {
     }, []);
 
     return (
-        <div>
-            <Arrow direction="Forward" isDisabled={false} icon={<KeyboardArrowUpIcon />}></Arrow>
-            <Arrow direction="Right" isDisabled={false} icon={<KeyboardArrowRightIcon />}></Arrow>
-            <Arrow direction="Backward" isDisabled={false} icon={<KeyboardArrowDownIcon />}></Arrow>
-            <Arrow direction="Left" isDisabled={false} icon={<KeyboardArrowLeftIcon />}></Arrow>
+        <div className="container">
+            <div className="controlsWrapper">
+                <div className="ArrowKeysWrapper">
+                    <div className="center">
+                        <Arrow direction="Forward" isDisabled={false} icon={<KeyboardArrowUpIcon />}></Arrow>
+                        <Arrow direction="Right" isDisabled={false} icon={<KeyboardArrowRightIcon />}></Arrow>
+                        <Arrow direction="Backward" isDisabled={false} icon={<KeyboardArrowDownIcon />}></Arrow>
+                        <Arrow direction="Left" isDisabled={false} icon={<KeyboardArrowLeftIcon />}></Arrow>
+                    </div>
+                </div>
             <Speed onSpeedChange={(speed) => setSpeedPercentage(speed)} />
+            </div>
         </div>
     );
 }

@@ -20,13 +20,17 @@ function Form(props) {
     }, [props.isLightOn]);
 
     return (
-        <div>
+        <div className="formWrapper">
             <div>
                 <Input value={props.inputValue} onChange={(value) => props.onInputChange(value)}></Input>
                 <Submit onSubmit={(command) => props.onSubmit(command)} command="custom" label="send" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
             </div>
-            <Toggle onToggle={() => props.onLightToggle()} checked={props.isLightOn} value="on"></Toggle>
-            <ButtonGroup onClick={(command) => props.onSubmit(command)}></ButtonGroup>
+            <div>
+                <ButtonGroup onClick={(command) => props.onSubmit(command)}></ButtonGroup>
+            </div>
+            {/* <div>
+                <Toggle onToggle={() => props.onLightToggle()} checked={props.isLightOn} value="on"></Toggle>
+            </div> */}
         </div>
     );
 

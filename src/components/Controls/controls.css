@@ -1,0 +1,54 @@
+.container {
+    position: relative;
+}
+
+.controlsWrapper {
+    display: flex;
+    justify-content: space-between;
+    min-width: 250px;
+    height: 150px;
+    position: absolute;
+    top: 25px;
+    left: 116px;
+}
+
+.ArrowKeysWrapper {
+    height: 150px;
+    width: 150px;
+}
+
+.center {
+    height: 50px;
+    width: 50px;
+    background-color: #000;
+    border-radius: 100%;
+    top: 50px;
+    left: 50px;
+    position: relative;
+}
+
+.center div {
+    position: absolute;
+}
+
+.center div button {
+    height: 50px;
+    width: 50px;
+}
+
+.center div:nth-child(1) {
+    top: -50px;
+}
+
+.center div:nth-child(2) {
+    right: -50px;
+}
+
+.center div:nth-child(3) {
+    bottom: -50px;
+
+}
+
+.center div:nth-child(4) {
+    left: -50px;
+}

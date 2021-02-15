@@ -2,8 +2,9 @@ import React, {useState, useEffect} from "react";
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Header from "./Header/Header";
 import Form from "./Form/Form";
-import Table from "./Table/Table";
+import DataTable from "./Table/Table";
 import Controls from "./Controls/Controls";
+import Video from "./Video/Video";
 import "./App.css";
 import * as api from "../services/api";
 
@@ -78,10 +79,13 @@ function App() {
   return (
     <MuiThemeProvider theme={THEME}>
       <Header data={headerData}></Header>
+      <Form onSubmit={onSubmit} onInputChange={onInputChange} onLightToggle={onLightToggle} isLightOn={isLightOn} inputValue={inputValue}></Form>
       <div className="body">
-        <Form onSubmit={onSubmit} onInputChange={onInputChange} onLightToggle={onLightToggle} isLightOn={isLightOn} inputValue={inputValue}></Form>
-        <Table data={tableData}></Table>
-        <Controls onMovementChange={onMovementChange}></Controls>
+        <DataTable data={tableData}></DataTable>
+        <div>
+          <Video></Video>
+          <Controls onMovementChange={onMovementChange}></Controls>
+        </div>
       </div>
     </MuiThemeProvider>
   );

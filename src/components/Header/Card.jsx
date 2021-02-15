@@ -15,7 +15,6 @@ function Card(props) {
 
     const [elements, setElements] = useState([]);
 
-
     useEffect(() => {
         var arr = [];
         props.data.forEach(elem => {
