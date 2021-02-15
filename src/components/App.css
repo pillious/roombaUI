@@ -1,3 +1,12 @@
+html, body {
+    min-height: fit-content;
+    min-width: fit-content;
+}
+
 .body {
     display: flex;
+}
+
+.rightWrapper {
+    margin-left: 0.5rem;
 }

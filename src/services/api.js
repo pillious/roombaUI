@@ -35,7 +35,7 @@ function splitData(data) {
     var headerData = {};
 
     // these are the values use in the header
-    var forHeader = ["isAlive", "oiMode", "isHomeBase", "chargingState", "voltage", "current", "temperature", "batteryCharge", "batteryCapacity"];
+    var forHeader = ["isAlive", "oiMode", "isHomeBase", "voltage", "current", "temperature", "batteryCharge", "batteryCapacity"];
 
     for (let i = 0; i < data.length; i++) {
         if (forHeader.includes(data[i].name)) {

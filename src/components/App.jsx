@@ -82,7 +82,7 @@ function App() {
       <Form onSubmit={onSubmit} onInputChange={onInputChange} onLightToggle={onLightToggle} isLightOn={isLightOn} inputValue={inputValue}></Form>
       <div className="body">
         <DataTable data={tableData}></DataTable>
-        <div>
+        <div className="rightWrapper">
           <Video></Video>
           <Controls onMovementChange={onMovementChange}></Controls>
         </div>

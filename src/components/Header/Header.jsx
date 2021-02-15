@@ -18,6 +18,7 @@ function Header(props) {
             <Paper className={paperStyle}>
                 <Element key="isAlive" label="isAlive" value={props.data.isAlive}></Element>
                 <Element key="oiMode" label="oiMode" value={props.data.oiMode}></Element>
+                <Element key="isHomeBase" label="isHomeBase" value={props.data.isHomeBase}></Element>
                 <Element key="chargingState" label="chargingState" value={props.data.chargingState}></Element>
             </Paper>
             <div className="header">
