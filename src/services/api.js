@@ -61,8 +61,8 @@ function splitData(data) {
 
 export async function sendCommand(command) {
     console.log("submitting command: " + command);
-    // var result = await axios.post("http://192.168.1.106:3000/api", {"command": command});
-    // console.log(result.data);
+    var result = await axios.post("http://192.168.1.106:3000/api", {"command": command});
+    console.log(result.data);
 
-    // return result;
+    return result;
 }
