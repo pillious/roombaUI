@@ -69,7 +69,7 @@ function Controls(props) {
             command = `DRIVE ${speedPercentage} ${radius}`;
         }
         else if (key === "BACKWARD") {
-            command = `DRIVE ${speedPercentage * -1} ${radius}`;
+            command = `DRIVE -${speedPercentage} ${radius}`;
         }
         else if (key === "LEFT") {
             command = `DRIVE ${speedPercentage} 1`;
