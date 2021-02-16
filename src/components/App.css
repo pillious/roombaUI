@@ -1,6 +1,20 @@
 html, body {
-    min-height: fit-content;
-    min-width: fit-content;
+    margin: 0;
+}
+
+.div-container {
+    display: flex;
+    height: 100vh;
+}
+
+.div-center {
+    display: flex;
+    margin: auto;
+}
+
+.div-content {
+    display: flex;
+    flex-direction: column;
 }
 
 .body {

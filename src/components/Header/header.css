@@ -4,7 +4,7 @@
 
 .div-header-wrapper {
     display: flex;
-    
+    padding-bottom: 0.5rem;
 }
 
 .div-header-wrapper .header {

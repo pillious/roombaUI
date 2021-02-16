@@ -7,7 +7,7 @@ import Element from "./Element";
 const useStyles = makeStyles((theme) => ({
     paperStyle: {
         padding: theme.spacing(1),  
-    }
+    },
 }));
 
 function Header(props) {
@@ -15,16 +15,15 @@ function Header(props) {
 
     return (
         <div className="div-header-wrapper">
-            <Paper className={paperStyle}>
+            <Paper className={paperStyle} elevation={5}>
                 <Element key="isAlive" label="isAlive" value={props.data.isAlive}></Element>
                 <Element key="oiMode" label="oiMode" value={props.data.oiMode}></Element>
-                <Element key="isHomeBase" label="isHomeBase" value={props.data.isHomeBase}></Element>
-                <Element key="chargingState" label="chargingState" value={props.data.chargingState}></Element>
+                <Element key="chargingSource" label="chargingSource" value={props.data.chargingSource}></Element>
             </Paper>
             <div className="header">
                 <div>Roooooooomba</div>
             </div>
-            <Paper className={paperStyle}>
+            <Paper className={paperStyle} elevation={5}>
                 <Element key="battery" label="Battery" value={props.data.batteryCapacity + "/" + props.data.batteryCharge}></Element>
                 <Element key="current" label="Current" value={props.data.current}></Element>
                 <Element key="voltage" label="Voltage" value={props.data.voltage}></Element>

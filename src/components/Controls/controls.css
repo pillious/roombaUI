@@ -27,28 +27,25 @@
     position: relative;
 }
 
-.center div {
+.center button {
+    height: 50px;
+    width: 50px;
     position: absolute;
 }
 
-.center div button {
-    height: 50px;
-    width: 50px;
-}
-
-.center div:nth-child(1) {
+.center button:nth-child(1) {
     top: -50px;
 }
 
-.center div:nth-child(2) {
+.center button:nth-child(2) {
     right: -50px;
 }
 
-.center div:nth-child(3) {
+.center button:nth-child(3) {
     bottom: -50px;
 
 }
 
-.center div:nth-child(4) {
+.center button:nth-child(4) {
     left: -50px;
 }

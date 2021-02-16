@@ -23,7 +23,8 @@ function Submit(props) {
 
     return (
         <div className="submitButtonWrapper">
-            <Button className={btnStyle} onClick={() => handleSubmit(props.command)} variant="contained" size="small">{props.label}</Button>
+            {/* <Button className={btnStyle} onClick={() => handleSubmit(props.command)} variant="contained" size="small">{props.label}</Button> */}
+            <Button color='primary' onClick={() => handleSubmit(props.command)} variant="contained" size="small">{props.label}</Button>
         </div>
     );
 }

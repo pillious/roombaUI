@@ -13,13 +13,19 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles({
-    table: {
+    tableWrapper: {
     //   minWidth: 365,
     //   maxWidth: 500,
-    minWidth: 740,
-    maxWidth: 1000,
-    display: "flex",
+    // minWidth: 740,
+    // maxWidth: 500,
+    // width: 300,
+        display: "flex",
+        flexWrap: "wrap",
+        flexDirection: "row",
     },
+    table: {
+        minWidth: 370,
+    }
 });
 
 function createData(name, value, boolean) {
@@ -56,14 +62,14 @@ function DataTable(props) {
         createData("Main Brush Current", props.data.mainBrushCurrent, props.data.isMainBrushOverCurrent),
         createData("Side Brush Current", props.data.sideBrushCurrent, props.data.isSideBrushOverCurrent),
 
-        createData("Velocity", props.data.requestedVelocity, ""),
-        createData("Radius", props.data.requestedRadius, ""),
-        createData("Left Velocity", props.data.requestedLeftVelocity, ""),
-        createData("Right Velocity", props.data.requestedRightVelocity, ""),
-        createData("Left Encoder Counts", props.data.leftEncoderCounts, ""),
-        createData("Right Encoder Counts", props.data.rightEncoderCounts, ""),
-        createData("Distance", props.data.distance, ""),
-        createData("Angle", props.data.angle, ""),
+        createData("Velocity", props.data.requestedVelocity, "-"),
+        createData("Radius", props.data.requestedRadius, "-"),
+        createData("Left Velocity", props.data.requestedLeftVelocity, "-"),
+        createData("Right Velocity", props.data.requestedRightVelocity, "-"),
+        createData("Left Encoder Counts", props.data.leftEncoderCounts, "-"),
+        createData("Right Encoder Counts", props.data.rightEncoderCounts, "-"),
+        createData("Distance", props.data.distance, "-"),
+        createData("Angle", props.data.angle, "-"),
     ];
 
     // const [elements, setElements] = useState([]);
@@ -84,51 +90,59 @@ function DataTable(props) {
 
     return (
         <div className="tableWrapper">
-            <TableContainer component={Paper} className={classes.table}>
-                <Table size="small" aria-label="data table">
-                    <TableHead>
-                    <TableRow>
-                        <TableCell>Name</TableCell>
-                        <TableCell align="right">Value</TableCell>
-                        <TableCell align="right">Boolean</TableCell>
+            <div className={classes.tableWrapper}>
+                <Paper elevation={5}>
+                    <Table size="small" className={classes.table} aria-label="data table">
+                        <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell align="right">Value</TableCell>
+                            <TableCell align="right">Boolean</TableCell>
 
-                    </TableRow>
-                    </TableHead>
-                    <TableBody>
-                    {rows1.map((row) => (
-                        <TableRow key={row.name}>
-                        <TableCell component="th" scope="row">
-                            {row.name}
-                        </TableCell>
-                        <TableCell align="right">{row.value}</TableCell>
-                        <TableCell align="right">{row.boolean}</TableCell>
                         </TableRow>
-                    ))}
-                    </TableBody>
-                </Table>
+                        </TableHead>
+                        <TableBody>
+                        {rows1.map((row) => (
+                            <TableRow key={row.name}>
+                            <TableCell component="th" scope="row">
+                                {row.name}
+                            </TableCell>
+                            <TableCell align="right">{row.value}</TableCell>
+                            <TableCell align="right">{row.boolean}</TableCell>
+                            </TableRow>
+                        ))}
+                        </TableBody>
+                    </Table>
+                </Paper>
+                <Paper elevation={5}>                
+                    <Table size="small" className={classes.table} aria-label="data table">
+                        <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell align="right">Value</TableCell>
+                            <TableCell align="right">Boolean</TableCell>
 
-                <Table size="small" aria-label="data table">
-                    <TableHead>
-                    <TableRow>
-                        <TableCell>Name</TableCell>
-                        <TableCell align="right">Value</TableCell>
-                        <TableCell align="right">Boolean</TableCell>
-
-                    </TableRow>
-                    </TableHead>
-                    <TableBody>
-                    {rows2.map((row) => (
-                        <TableRow key={row.name}>
-                        <TableCell component="th" scope="row">
-                            {row.name}
-                        </TableCell>
-                        <TableCell align="right">{row.value}</TableCell>
-                        <TableCell align="right">{row.boolean}</TableCell>
                         </TableRow>
-                    ))}
-                    </TableBody>
-                </Table>
-            </TableContainer>
+                        </TableHead>
+                        <TableBody>
+                        {rows2.map((row) => (
+                            <TableRow key={row.name}>
+                            <TableCell component="th" scope="row">
+                                {row.name}
+                            </TableCell>
+                            <TableCell align="right">{row.value}</TableCell>
+                            <TableCell align="right">{row.boolean}</TableCell>
+                            </TableRow>
+                        ))}
+                        </TableBody>
+                    </Table>
+                </Paper>
+            {/* <TableContainer component={Paper} className={classes.table}> */}
+
+
+
+            {/* </TableContainer> */}
+            </div>
         </div>
     );
 

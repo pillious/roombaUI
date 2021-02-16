@@ -6,6 +6,7 @@ import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import Arrow from "./Arrow";
 import Speed from "./Speed";
 import "./controls.css";
+import { IconButton } from "@material-ui/core";
 
 function Controls(props) {
     const [doForward, setDoForward] = useState(false);
@@ -111,11 +112,15 @@ function Controls(props) {
         <div className="container">
             <div className="controlsWrapper">
                 <div className="ArrowKeysWrapper">
-                    <div className="center">
-                        <Arrow direction="Forward" isDisabled={false} icon={<KeyboardArrowUpIcon />}></Arrow>
+                    <div className="center">                        
+                        {/* <Arrow direction="Forward" isDisabled={false} icon={<KeyboardArrowUpIcon />}></Arrow>
                         <Arrow direction="Right" isDisabled={false} icon={<KeyboardArrowRightIcon />}></Arrow>
                         <Arrow direction="Backward" isDisabled={false} icon={<KeyboardArrowDownIcon />}></Arrow>
-                        <Arrow direction="Left" isDisabled={false} icon={<KeyboardArrowLeftIcon />}></Arrow>
+                        <Arrow direction="Left" isDisabled={false} icon={<KeyboardArrowLeftIcon />}></Arrow> */}
+                        <IconButton color="secondary"><KeyboardArrowUpIcon /></IconButton>
+                        <IconButton color="secondary"><KeyboardArrowRightIcon /></IconButton>
+                        <IconButton color="secondary"><KeyboardArrowDownIcon /></IconButton>
+                        <IconButton color="secondary"><KeyboardArrowLeftIcon /></IconButton>
                     </div>
                 </div>
             <Speed onSpeedChange={(speed) => setSpeedPercentage(speed)} />
