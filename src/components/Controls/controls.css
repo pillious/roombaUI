@@ -9,7 +9,7 @@
     height: 150px;
     position: absolute;
     top: 25px;
-    left: 116px;
+    left: 100px;
 }
 
 .ArrowKeysWrapper {
@@ -48,4 +48,10 @@
 
 .center button:nth-child(4) {
     left: -50px;
+}
+
+.PWM-container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
 }

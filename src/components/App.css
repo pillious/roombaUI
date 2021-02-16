@@ -20,7 +20,3 @@ html, body {
 .body {
     display: flex;
 }
-
-.rightWrapper {
-    margin-left: 0.5rem;
-}

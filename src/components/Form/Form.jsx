@@ -21,7 +21,7 @@ function Form(props) {
 
     return (
         <div className="formWrapper">
-            <div>
+            <div className="customWrapper">
                 <Input value={props.inputValue} onChange={(value) => props.onInputChange(value)}></Input>
                 <Submit onSubmit={(command) => props.onSubmit(command)} command="custom" label="send" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
             </div>

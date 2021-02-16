@@ -5,6 +5,7 @@ import Slider from "@material-ui/core/Slider";
 const useStyles = makeStyles({
     root: {
       height: 125,
+      fontFamily: ["Roboto"],
     },
     sliderLabel: {
       paddingBottom: 5,
@@ -13,21 +14,10 @@ const useStyles = makeStyles({
 
 function Speed(props) {
     const classes = useStyles();
-
-    const marks = [
-        {
-          value: 0,
-          label: '0%',
-        },
-        {
-          value: 100,
-          label: '100%',
-        },
-      ];
       
     return (
         <div className={classes.root}>
-            <div className={classes.sliderLabel}>Speed</div>
+            <div className={classes.sliderLabel}>Speed (%)</div>
             <Slider
             orientation="vertical"
             defaultValue={40}
@@ -36,7 +26,6 @@ function Speed(props) {
             min={0}
             max={100}
             step={20}
-            marks={marks}
             />
         </div>
     );

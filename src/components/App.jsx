@@ -9,12 +9,6 @@ import "./App.css";
 import * as api from "../services/api";
 import { Paper } from "@material-ui/core";
 
-// const THEME = createMuiTheme({
-//   typography: {
-//    "fontFamily": `"Montserrat", sans-serif`,
-//   }
-// });
-
 const THEME = createMuiTheme({
   palette: {
     type: "dark",
@@ -42,7 +36,7 @@ function App() {
   const [headerData, setHeaderData] = useState([]);
 
   const [inputValue, setInputValue] = useState("");
-  const [isLightOn, setIsLightOn] = useState(false);
+  // const [isLightOn, setIsLightOn] = useState(false);
 
   // runs once to initialize websocket.
   useEffect(() => {
@@ -77,25 +71,20 @@ function App() {
   }
 
   // save the state of the light when button toggled
-  function onLightToggle() {
-    setIsLightOn(!isLightOn);
-  }
+  // function onLightToggle() {
+  //   setIsLightOn(!isLightOn);
+  // }
 
   // when the light state is updated, send command to server
-  useEffect(() => {
-    var command = isLightOn ? "On" : "Off";
-    api.toggleLight(command);
-  }, [isLightOn]);
+  // useEffect(() => {
+  //   var command = isLightOn ? "On" : "Off";
+  //   api.toggleLight(command);
+  // }, [isLightOn]);
 
 
   // save the value of the custom command input
   function onInputChange(value) {
     setInputValue(value);
-  }
-
-  function onMovementChange(direction, speed, command) {
-    // api.sendCommand();
-    console.log({direction: direction, speed: speed, command: command});
   }
 
   return (
@@ -104,12 +93,12 @@ function App() {
         <div className="div-center">
           <div className="div-content">
             <Header data={headerData}></Header>
-            <Form onSubmit={onSubmit} onInputChange={onInputChange} onLightToggle={onLightToggle} isLightOn={isLightOn} inputValue={inputValue}></Form>
+            <Form onSubmit={onSubmit} onInputChange={onInputChange} inputValue={inputValue}></Form>
             <div className="body">
               <DataTable data={tableData}></DataTable>
               <div className="rightWrapper">
                 <Video></Video>
-                <Controls onMovementChange={onMovementChange}></Controls>
+                <Controls></Controls>
               </div>
             </div>
           </div>

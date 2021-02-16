@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import "./header.css";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core";
@@ -30,7 +31,6 @@ function Header(props) {
                 <Element key="temperature" label="Temperature" value={props.data.temperature}></Element>
             </Paper>
         </div>
-
     );
 }
 

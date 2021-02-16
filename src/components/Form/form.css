@@ -2,6 +2,10 @@
     display: flex;
 }
 
+.customWrapper {
+    margin-right: 4px;
+}
+
 Form {
     padding-bottom: 1rem;
 }
