@@ -19,11 +19,21 @@ const useStyles = makeStyles({
         flexDirection: "row",
     },
     table: {
-        minWidth: 370,
+        minWidth: 330,
+    },
+    tableRow: {
+        height: 37,
+
+        "& .MuiTableCell-root": {
+            padding: "6px 16px",
+        }
     },
     blockIcon: {
         fontSize: 12,
     },
+    checkIcon: {
+        fontSize: 18,
+    }
 });
 
 function DataTable(props) {
@@ -35,7 +45,7 @@ function DataTable(props) {
     
         switch (rawBoolean) {
             case "true":
-                boolIcon = <CheckIcon/>;
+                boolIcon = <CheckIcon className={classes.checkIcon} />;
                 break;
             case "-":
                 boolIcon = <BlockIcon className={classes.blockIcon} />;
@@ -95,16 +105,16 @@ function DataTable(props) {
                 <Paper elevation={5}>
                     <Table size="small" className={classes.table} aria-label="data table">
                         <TableHead>
-                        <TableRow>
+                        <TableRow className={classes.tableRow}>
                             <TableCell>Name</TableCell>
                             <TableCell align="right">Value</TableCell>
-                            <TableCell align="right"><CheckIcon/></TableCell>
+                            <TableCell align="right"><CheckIcon className={classes.checkIcon}/></TableCell>
 
                         </TableRow>
                         </TableHead>
                         <TableBody>
                         {rows1.map((row) => (
-                            <TableRow key={row.name}>
+                            <TableRow key={row.name} className={classes.tableRow}>
                             <TableCell component="th" scope="row">
                                 {row.name}
                             </TableCell>
@@ -118,16 +128,16 @@ function DataTable(props) {
                 <Paper elevation={5}>                
                     <Table size="small" className={classes.table} aria-label="data table">
                         <TableHead>
-                        <TableRow>
+                        <TableRow className={classes.tableRow}>
                             <TableCell>Name</TableCell>
                             <TableCell align="right">Value</TableCell>
-                            <TableCell align="right"><CheckIcon/></TableCell>
+                            <TableCell align="right"><CheckIcon className={classes.checkIcon}/></TableCell>
 
                         </TableRow>
                         </TableHead>
                         <TableBody>
                         {rows2.map((row) => (
-                            <TableRow key={row.name}>
+                            <TableRow key={row.name} className={classes.tableRow}>
                             <TableCell component="th" scope="row">
                                 {row.name}
                             </TableCell>
