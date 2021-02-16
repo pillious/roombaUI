@@ -1,7 +1,7 @@
 .container {
     position: relative;
     flex: 1;
-    max-height: 200px;
+    max-height: 250px;
 }
 
 .controlsWrapper {
@@ -9,20 +9,26 @@
     justify-content: space-between;
     min-width: 250px;
     height: 150px;
-    position: absolute;
-    top: 25px;
-    left: 100px;
+    margin-top: 25px;
+    /* position: absolute; */
+    /* top: 25px; */
+    /* left: 100px; */
 }
 
 .ArrowKeysWrapper {
     height: 150px;
     width: 150px;
+    padding-left: 25px;
+}
+
+.sliderWrapper {
+    padding-right: 25px;
 }
 
 .center {
     height: 50px;
     width: 50px;
-    background-color: #000;
+    background-color: #2e2e2e;
     border-radius: 100%;
     top: 50px;
     left: 50px;
@@ -55,5 +61,4 @@
 .PWM-container {
     display: flex;
     flex-direction: column;
-    padding-left: 1rem;
 }

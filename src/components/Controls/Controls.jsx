@@ -1,27 +1,33 @@
 import React, {useRef} from "react";
+import {makeStyles} from "@material-ui/core/styles"; 
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import { IconButton } from "@material-ui/core";
-import Arrow from "./Arrow";
-import Speed from "./Speed";
-import PWM from "./PWM";
+import SpeedIcon from '@material-ui/icons/Speed';
+import { IconButton, Divider, Button } from "@material-ui/core";
+import HorizontalSlider from "./HorizontalSlider";
 import "./controls.css";
 import * as api from "../../services/api";
 
+const useStyles = makeStyles({
+    divider: {
+        margin: "6px 0",
+    },
+    arrowIcon: {
+        fontSize: "2rem",
+    }
+});
 
 function Controls(props) {
+    const classes = useStyles();
 
-    // const [speedPercentage, setSpeedPercentage] = useState(40);
     const speedPercentage = useRef(40);
     const radius = useRef(0);
-    const brushPercentage = useRef(40);
-    const sideBrushPercentage = useRef(40);
-    const vacPercentage = useRef(40);
+    const brushPercentage = useRef(50);
+    const sideBrushPercentage = useRef(50);
+    const vacPercentage = useRef(50);
 
-    // 1001 - forward btn, 1002 - left button, 1003 - back button, 1004 - right button
-    // const validKeys = [87, 65, 83, 68, 38, 37, 40, 39, 1001, 1002, 1003, 1004];
     const validKeys = ["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight", "BtnUp", "BtnLeft", "BtnDown", "BtnRight"];
     const isKeyHeld = useRef(false);
     const currentDirection = useRef("");
@@ -95,62 +101,69 @@ function Controls(props) {
         }
     }
 
-    function setNewSpeed(speed) {
-        speedPercentage.current = speed;
+    function sendPWM() {
+        console.log({P: brushPercentage.current, W: sideBrushPercentage.current, M: vacPercentage.current});
+        api.sendCommand(`PWM ${brushPercentage.current} ${sideBrushPercentage.current} ${vacPercentage.current}`);
     }
 
     return (
-      <div className="container" tabIndex="0" onKeyDown={(e) => onKeyDown(e.code)} onKeyUp={(e) => onKeyUp(e.code)}>
+    <div className="container" tabIndex="0" onKeyDown={(e) => onKeyDown(e.code)} onKeyUp={(e) => onKeyUp(e.code)}>
         <div className="controlsWrapper">
-          <div className="ArrowKeysWrapper">
-            <div className="center">
+            <div className="ArrowKeysWrapper">
+                <div className="center">
 
-              <IconButton
-                color="secondary"
-                onMouseDown={() => onKeyDown("BtnUp")}
-                onMouseUp={() => onKeyUp("BtnUp")}
-                onTouchStart={() => onKeyDown("BtnUp")}
-                onTouchEnd={() => onKeyUp("BtnUp")}
-              >
-                <KeyboardArrowUpIcon />
-              </IconButton>
+                <IconButton
+                    color="secondary"
+                    onMouseDown={() => onKeyDown("BtnUp")}
+                    onMouseUp={() => onKeyUp("BtnUp")}
+                    onTouchStart={() => onKeyDown("BtnUp")}
+                    onTouchEnd={() => onKeyUp("BtnUp")}
+                >
+                    <KeyboardArrowUpIcon className={classes.arrowIcon} />
+                </IconButton>
 
-              <IconButton
-                color="secondary"
-                onMouseDown={() => onKeyDown("BtnLeft")}
-                onMouseUp={() => onKeyUp("BtnLeft")}
-                onTouchStart={() => onKeyDown("BtnLeft")}
-                onTouchEnd={() => onKeyUp("BtnLeft")}
-              >
-                <KeyboardArrowRightIcon />
-              </IconButton>
+                <IconButton
+                    color="secondary"
+                    onMouseDown={() => onKeyDown("BtnLeft")}
+                    onMouseUp={() => onKeyUp("BtnLeft")}
+                    onTouchStart={() => onKeyDown("BtnLeft")}
+                    onTouchEnd={() => onKeyUp("BtnLeft")}
+                >
+                    <KeyboardArrowRightIcon className={classes.arrowIcon} />
+                </IconButton>
 
-              <IconButton
-                color="secondary"
-                onMouseDown={() => onKeyDown("BtnDown")}
-                onMouseUp={() => onKeyUp("BtnDown")}
-                onTouchStart={() => onKeyDown("BtnDown")}
-                onTouchEnd={() => onKeyUp("BtnDown")}
-              >
-                <KeyboardArrowDownIcon />
-              </IconButton>
+                <IconButton
+                    color="secondary"
+                    onMouseDown={() => onKeyDown("BtnDown")}
+                    onMouseUp={() => onKeyUp("BtnDown")}
+                    onTouchStart={() => onKeyDown("BtnDown")}
+                    onTouchEnd={() => onKeyUp("BtnDown")}
+                >
+                    <KeyboardArrowDownIcon className={classes.arrowIcon} />
+                </IconButton>
 
-              <IconButton
-                color="secondary"
-                onMouseDown={() => onKeyDown("BtnRight")}
-                onMouseUp={() => onKeyUp("BtnRight")}
-                onTouchStart={() => onKeyDown("BtnRight")}
-                onTouchEnd={() => onKeyUp("BtnRight")}
-              >
-                <KeyboardArrowLeftIcon />
-              </IconButton>
+                <IconButton
+                    color="secondary"
+                    onMouseDown={() => onKeyDown("BtnRight")}
+                    onMouseUp={() => onKeyUp("BtnRight")}
+                    onTouchStart={() => onKeyDown("BtnRight")}
+                    onTouchEnd={() => onKeyUp("BtnRight")}
+                >
+                    <KeyboardArrowLeftIcon className={classes.arrowIcon} />
+                </IconButton>
 
+                </div>
             </div>
-          </div>
-          <Speed onSpeedChange={(speed) => setNewSpeed(speed)} />
-          <PWM></PWM>
+            <div className="sliderWrapper">
+                <HorizontalSlider onSliderChange={(speed) => {speedPercentage.current = speed}} label={<SpeedIcon />} minVal={0} maxVal={100} step={20} defaultVal={speedPercentage.current}/>
+                <Divider orientation="horizontal" className={classes.divider} />
+                <HorizontalSlider onSliderChange={(val) => {brushPercentage.current = val}} label="P" minVal={0} maxVal={100} step={25} defaultVal={brushPercentage.current}/>
+                <HorizontalSlider onSliderChange={(val) => {sideBrushPercentage.current = val}} label="W" minVal={0} maxVal={100} step={25} defaultVal={sideBrushPercentage.current}/>
+                <HorizontalSlider onSliderChange={(val) => {vacPercentage.current = val}} label="M" minVal={0} maxVal={100} step={25} defaultVal={vacPercentage.current}/>
+                <Button variant="contained" color="primary" size="medium" onClick={sendPWM}>Set PWM</Button>
+            </div>
         </div>
-      </div>
+    </div>
     );
 }
 
