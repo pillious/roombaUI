@@ -15,7 +15,7 @@ function Controls(props) {
 
     // const [speedPercentage, setSpeedPercentage] = useState(40);
     const speedPercentage = useRef(40);
-    const radius = useRef(40);
+    const radius = useRef(0);
     const brushPercentage = useRef(40);
     const sideBrushPercentage = useRef(40);
     const vacPercentage = useRef(40);
