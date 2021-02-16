@@ -1,39 +1,56 @@
 import React from "react";
-import {useState, useEffect} from "react";
+// import {useState, useEffect} from "react";
 import { makeStyles } from '@material-ui/core/styles';
-import Element from "./Element";
+// import Element from "./Element";
 import "./table.css";
-
+import CheckIcon from '@material-ui/icons/Check';
+import BlockIcon from '@material-ui/icons/Block';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles({
     tableWrapper: {
-    //   minWidth: 365,
-    //   maxWidth: 500,
-    // minWidth: 740,
-    // maxWidth: 500,
-    // width: 300,
         display: "flex",
         flexWrap: "wrap",
         flexDirection: "row",
     },
     table: {
         minWidth: 370,
-    }
+    },
+    blockIcon: {
+        fontSize: 12,
+    },
 });
-
-function createData(name, value, boolean) {
-    return { name, value, boolean };
-}
 
 function DataTable(props) {
     const classes = useStyles();
+
+    function createData(name, rawValue, rawBoolean) {
+        let boolIcon;
+        let value = rawValue;
+    
+        switch (rawBoolean) {
+            case "true":
+                boolIcon = <CheckIcon/>;
+                break;
+            case "-":
+                boolIcon = <BlockIcon className={classes.blockIcon} />;
+                break;
+            default:
+                boolIcon = "";
+                break; 
+        }
+    
+        if (rawValue === "-") {
+            value = <BlockIcon className={classes.blockIcon} />
+        }
+    
+        return { name, value, boolIcon};
+    }
 
     const rows1 = [
         createData("Left Bumper", props.data.leftLightBumper, props.data.isLeftLightBumper),
@@ -72,22 +89,6 @@ function DataTable(props) {
         createData("Angle", props.data.angle, "-"),
     ];
 
-    // const [elements, setElements] = useState([]);
-
-    // useEffect(() => {
-    //     updateElements()
-    // }, [props.data]);
-
-    // function updateElements() {
-    //     let arr = [];
-
-    //     props.data.forEach(elem => {
-    //         arr.push(<Element key={elem.name} name={elem.name} value={elem.value}></Element>);
-    //     })
-
-    //     setElements(arr);
-    // }
-
     return (
         <div className="tableWrapper">
             <div className={classes.tableWrapper}>
@@ -97,7 +98,7 @@ function DataTable(props) {
                         <TableRow>
                             <TableCell>Name</TableCell>
                             <TableCell align="right">Value</TableCell>
-                            <TableCell align="right">Boolean</TableCell>
+                            <TableCell align="right"><CheckIcon/></TableCell>
 
                         </TableRow>
                         </TableHead>
@@ -108,7 +109,7 @@ function DataTable(props) {
                                 {row.name}
                             </TableCell>
                             <TableCell align="right">{row.value}</TableCell>
-                            <TableCell align="right">{row.boolean}</TableCell>
+                            <TableCell align="right">{row.boolIcon}</TableCell>
                             </TableRow>
                         ))}
                         </TableBody>
@@ -120,7 +121,7 @@ function DataTable(props) {
                         <TableRow>
                             <TableCell>Name</TableCell>
                             <TableCell align="right">Value</TableCell>
-                            <TableCell align="right">Boolean</TableCell>
+                            <TableCell align="right"><CheckIcon/></TableCell>
 
                         </TableRow>
                         </TableHead>
@@ -131,17 +132,12 @@ function DataTable(props) {
                                 {row.name}
                             </TableCell>
                             <TableCell align="right">{row.value}</TableCell>
-                            <TableCell align="right">{row.boolean}</TableCell>
+                            <TableCell align="right">{row.boolIcon}</TableCell>
                             </TableRow>
                         ))}
                         </TableBody>
                     </Table>
                 </Paper>
-            {/* <TableContainer component={Paper} className={classes.table}> */}
-
-
-
-            {/* </TableContainer> */}
             </div>
         </div>
     );
