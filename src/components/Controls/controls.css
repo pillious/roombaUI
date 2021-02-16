@@ -1,5 +1,7 @@
 .container {
     position: relative;
+    flex: 1;
+    max-height: 200px;
 }
 
 .controlsWrapper {

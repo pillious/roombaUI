@@ -20,3 +20,8 @@ html, body {
 .body {
     display: flex;
 }
+
+.rightWrapper {
+    display: flex;
+    flex-direction: column;
+}

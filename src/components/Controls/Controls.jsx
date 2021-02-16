@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from "react";
+import React, {useState, useRef, useEffect, useCallback} from "react";
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
@@ -12,70 +12,56 @@ import * as api from "../../services/api";
 
 
 function Controls(props) {
-    const [doForward, setDoForward] = useState(false);
-    const [doBackward, setDoBackward] = useState(false);
-    const [doLeft, setDoLeft] = useState(false);
-    const [doRight, setDoRight] = useState(false);
 
-    const [speedPercentage, setSpeedPercentage] = useState(40);
-    const radius = 0;
-    const brushPercentage = 40;
-    const sideBrushPercentage = 40;
-    const vacPercentage = 40;
+    // const [speedPercentage, setSpeedPercentage] = useState(40);
+    const speedPercentage = useRef(40);
+    const radius = useRef(40);
+    const brushPercentage = useRef(40);
+    const sideBrushPercentage = useRef(40);
+    const vacPercentage = useRef(40);
 
-    var validKeys = [87, 65, 83, 68, 38, 37, 40, 39];
-    var keyHeld = false;
-    var lastKeyPressedName = "";
-    var lastKeyPressedCode = "";
+    // 1001 - forward btn, 1002 - left button, 1003 - back button, 1004 - right button
+    // const validKeys = [87, 65, 83, 68, 38, 37, 40, 39, 1001, 1002, 1003, 1004];
+    const validKeys = ["KeyW", "KeyA", "KeyS", "KeyD", "ArrowUp", "ArrowLeft", "ArrowDown", "ArrowRight", "BtnUp", "BtnLeft", "BtnDown", "BtnRight"];
+    const isKeyHeld = useRef(false);
+    const currentDirection = useRef("");
+    const currentKeyPressed = useRef(NaN);
 
-    function onKeyDown(e) {
-        let keyCode = e.keyCode;
-        if (!keyHeld && keyCode !== lastKeyPressedCode && validKeys.includes(keyCode)) {
-            var key = determineActiveKey(keyCode);
-            sendMovementCommand(key);
+    function onKeyDown(key) {
+        if (!isKeyHeld.current && key !== currentKeyPressed.current && validKeys.includes(key)) {
+            console.log(key)
+            var direction = determineDirection(key);
+            sendMovementCommand(direction);
 
-            keyHeld = true;
-            lastKeyPressedName = key;
-            lastKeyPressedCode = keyCode;
+            isKeyHeld.current = true;
+            currentDirection.current = direction;
+            currentKeyPressed.current = key;
 
         }
     }
 
-    // const onKeyDown = useCallback((e) => {
-    //     let keyCode = e.keyCode;
-    //     if (!keyHeld && keyCode !== lastKeyPressedCode && validKeys.includes(keyCode)) {
-    //         var key = determineActiveKey(keyCode);
-    //         props.onMovementChange(key, speedPercentage, "START");
-
-    //         keyHeld = true;
-    //         lastKeyPressedName = key;
-    //         lastKeyPressedCode = keyCode;
-    //     }
-    // }, [speedPercentage]);
-
-    function onKeyUp(e) {
-        let keyCode = e.keyCode;
-        if (keyHeld && keyCode === lastKeyPressedCode && validKeys.includes(keyCode)) {
+    function onKeyUp(key) {
+        if (isKeyHeld.current && key === currentKeyPressed.current && validKeys.includes(key)) {
             stopMotion();
-            keyHeld = false;
-            lastKeyPressedName = "";
-            lastKeyPressedCode = -1;
+            isKeyHeld.current = false;
+            currentDirection.current = "";
+            currentKeyPressed.current = -1;
         }
     }
 
-    function sendMovementCommand(key) {
+    function sendMovementCommand(direction) {
         let command;
-        if (key === "FORWARD") {
-            command = `DRIVE ${speedPercentage} ${radius}`;
+        if (direction === "FORWARD") {
+            command = `DRIVE ${speedPercentage.current} ${radius.current}`;
         }
-        else if (key === "BACKWARD") {
-            command = `DRIVE ${speedPercentage * -1} ${radius}`;
+        else if (direction === "BACKWARD") {
+            command = `DRIVE -${speedPercentage.current} ${radius.current}`;
         }
-        else if (key === "LEFT") {
-            command = `DRIVE ${speedPercentage} 1`;
+        else if (direction === "LEFT") {
+            command = `DRIVE ${speedPercentage.current} 1`;
         }
-        else if (key === "RIGHT") {
-            command = `DRIVE ${speedPercentage} -1`;
+        else if (direction === "RIGHT") {
+            command = `DRIVE ${speedPercentage.current} -1`;
         }
 
         if (command) {
@@ -87,76 +73,84 @@ function Controls(props) {
         api.sendCommand("DRIVE 0 0");
     }
 
-    // const onKeyUp = useCallback((e) => {
-    //     let keyCode = e.keyCode;
-    //     if (keyHeld && keyCode === lastKeyPressedCode && validKeys.includes(keyCode)) {
-    //         props.onMovementChange(lastKeyPressedName, speedPercentage, "STOP");
-    //         keyHeld = false;
-    //         lastKeyPressedName = "";
-    //         lastKeyPressedCode = -1;
-    //     }
-    // }, [speedPercentage])
-
-    // Check if WASD or arrow key was pressed
-    function determineActiveKey(keyCode) {
-        switch (keyCode) {
-            case 87:
-            case 38:
+    // Check if WASD/arrow key/button was pressed
+    function determineDirection(key) {
+        switch (key) {
+            case "KeyW":
+            case "ArrowUp":
+            case "BtnUp":
                 return "FORWARD";
-            case 65:
-            case 37:
+            case "KeyA":
+            case "ArrowLeft":
+            case "BtnLeft":
                 return "LEFT";
-            case 83:
-            case 40:
+            case "KeyS":
+            case "ArrowDown":
+            case "BtnDown":
                 return "BACKWARD";
-            case 68:
-            case 39:
+            case "KeyD":
+            case "ArrowRight":
+            case "BtnRight":
                 return "RIGHT";
         }
     }
 
-    // useEffect(() => {
-    //     window.removeEventListener('keydown', (e) => onKeyDown(e));
-    //     window.removeEventListener('keyup', (e) => onKeyUp(e));
-
-    //     window.addEventListener('keydown', (e) => onKeyDown(e));
-    //     window.addEventListener('keyup', (e) => onKeyUp(e));
-
-    //     return () => {
-    //         window.removeEventListener('keydown', (e) => onKeyDown(e));
-    //         window.removeEventListener('keyup', (e) => onKeyUp(e));
-    //     };
-    // }, [speedPercentage, onKeyUp, onKeyDown]);
-
-    useEffect(() => {
-        window.addEventListener('keydown', (e) => onKeyDown(e));
-        window.addEventListener('keyup', (e) => onKeyUp(e));
-
-        return () => {
-            window.removeEventListener('keydown', (e) => onKeyDown(e));
-            window.removeEventListener('keyup', (e) => onKeyUp(e));
-        };
-    }, []);
+    function setNewSpeed(speed) {
+        speedPercentage.current = speed;
+    }
 
     return (
-        <div className="container">
-            <div className="controlsWrapper">
-                <div className="ArrowKeysWrapper">
-                    <div className="center" >                        
-                        {/* <Arrow direction="Forward" isDisabled={false} icon={<KeyboardArrowUpIcon />}></Arrow>
-                        <Arrow direction="Right" isDisabled={false} icon={<KeyboardArrowRightIcon />}></Arrow>
-                        <Arrow direction="Backward" isDisabled={false} icon={<KeyboardArrowDownIcon />}></Arrow>
-                        <Arrow direction="Left" isDisabled={false} icon={<KeyboardArrowLeftIcon />}></Arrow> */}
-                        <IconButton color="secondary"><KeyboardArrowUpIcon /></IconButton>
-                        <IconButton color="secondary"><KeyboardArrowRightIcon /></IconButton>
-                        <IconButton color="secondary"><KeyboardArrowDownIcon /></IconButton>
-                        <IconButton color="secondary"><KeyboardArrowLeftIcon /></IconButton>
-                    </div>
-                </div>
-                <Speed onSpeedChange={(speed) => setSpeedPercentage(speed)} />
-                <PWM></PWM>
+      <div className="container" tabIndex="0" onKeyDown={(e) => onKeyDown(e.code)} onKeyUp={(e) => onKeyUp(e.code)}>
+        <div className="controlsWrapper">
+          <div className="ArrowKeysWrapper">
+            <div className="center">
+
+              <IconButton
+                color="secondary"
+                onMouseDown={() => onKeyDown("BtnUp")}
+                onMouseUp={() => onKeyUp("BtnUp")}
+                onTouchStart={() => onKeyDown("BtnUp")}
+                onTouchEnd={() => onKeyUp("BtnUp")}
+              >
+                <KeyboardArrowUpIcon />
+              </IconButton>
+
+              <IconButton
+                color="secondary"
+                onMouseDown={() => onKeyDown("BtnLeft")}
+                onMouseUp={() => onKeyUp("BtnLeft")}
+                onTouchStart={() => onKeyDown("BtnLeft")}
+                onTouchEnd={() => onKeyUp("BtnLeft")}
+              >
+                <KeyboardArrowRightIcon />
+              </IconButton>
+
+              <IconButton
+                color="secondary"
+                onMouseDown={() => onKeyDown("BtnDown")}
+                onMouseUp={() => onKeyUp("BtnDown")}
+                onTouchStart={() => onKeyDown("BtnDown")}
+                onTouchEnd={() => onKeyUp("BtnDown")}
+              >
+                <KeyboardArrowDownIcon />
+              </IconButton>
+
+              <IconButton
+                color="secondary"
+                onMouseDown={() => onKeyDown("BtnRight")}
+                onMouseUp={() => onKeyUp("BtnRight")}
+                onTouchStart={() => onKeyDown("BtnRight")}
+                onTouchEnd={() => onKeyUp("BtnRight")}
+              >
+                <KeyboardArrowLeftIcon />
+              </IconButton>
+
             </div>
+          </div>
+          <Speed onSpeedChange={(speed) => setNewSpeed(speed)} />
+          <PWM></PWM>
         </div>
+      </div>
     );
 }
 
