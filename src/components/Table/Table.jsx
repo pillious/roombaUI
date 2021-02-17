@@ -19,11 +19,9 @@ const useStyles = makeStyles({
         flexDirection: "row",
     },
     table: {
-        minWidth: 330,
+        width: 250,
     },
     tableRow: {
-        height: 37,
-
         "& .MuiTableCell-root": {
             padding: "6px 16px",
         }
