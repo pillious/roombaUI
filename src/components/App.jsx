@@ -39,7 +39,6 @@ function App() {
 
   // runs once to initialize websocket.
   useEffect(() => {
-    result = await axios.post(`http://${process.env.REACT_APP_SERVERURL}:${process.env.REACT_APP_PORT}/api`, {"command": command}); 
     let ws;
     if (process.env.REACT_WS_PORT) {
       ws = new WebSocket(`ws://{process.env.REACT_APP_SERVERURL}:{process.env.REACT_WS_PORT}`);
