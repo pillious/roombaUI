@@ -36,7 +36,6 @@ function App() {
   const [headerData, setHeaderData] = useState([]);
 
   const [inputValue, setInputValue] = useState("");
-  // const [isLightOn, setIsLightOn] = useState(false);
 
   // runs once to initialize websocket.
   useEffect(() => {
@@ -69,18 +68,6 @@ function App() {
       api.sendCommand(command.toUpperCase());
     }
   }
-
-  // save the state of the light when button toggled
-  // function onLightToggle() {
-  //   setIsLightOn(!isLightOn);
-  // }
-
-  // when the light state is updated, send command to server
-  // useEffect(() => {
-  //   var command = isLightOn ? "On" : "Off";
-  //   api.toggleLight(command);
-  // }, [isLightOn]);
-
 
   // save the value of the custom command input
   function onInputChange(value) {

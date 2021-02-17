@@ -46,18 +46,8 @@ function splitData(data) {
         }
     }
 
-    // console.log(tableData);
-
     return {"tableData": tableData, "headerData": headerData};
 }
-
-// export async function toggleLight(command) {
-//         // var result = await axios.post("http://192.168.1.106:3000/api", {"command": command});
-//         // console.log(result.data);
-
-//         console.log("light toggled... (temp): " + command);
-//         // return result.data;
-// }
 
 export async function sendCommand(command) {
     console.log("submitting command: " + command);

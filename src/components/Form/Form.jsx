@@ -1,23 +1,9 @@
 import React from "react";
-import {useState, useEffect} from "react";
 import Input from "./Input";
 import Submit from "./Submit";
-import Toggle from "./Toggle";
 import ButtonGroup from "./ButtonGroup";
-import * as api from "../../services/api";
 
 function Form(props) {
-
-    // const [inputValue, setInputValue] = useState("");
-    // const [isLightOn, setIsLightOn] = useState(false);
-
-    // function handleSubmit(command) {
-    //     props.onSubmit(command)
-    // }
-
-    useEffect(() => {
-        var command = props.isLightOn ? "ON" : "OFF";
-    }, [props.isLightOn]);
 
     return (
         <div className="formWrapper">
@@ -28,9 +14,6 @@ function Form(props) {
             <div>
                 <ButtonGroup onClick={(command) => props.onSubmit(command)}></ButtonGroup>
             </div>
-            {/* <div>
-                <Toggle onToggle={() => props.onLightToggle()} checked={props.isLightOn} value="on"></Toggle>
-            </div> */}
         </div>
     );
 

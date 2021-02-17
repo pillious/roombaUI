@@ -4,7 +4,6 @@ import {Paper, Divider} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import Element from "./Element";
 import "./header.css";
-import { findByLabelText } from "@testing-library/react";
 
 const useStyles = makeStyles((theme) => ({
     paperStyle: {

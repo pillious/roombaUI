@@ -1,10 +1,7 @@
 import React from "react";
-// import {useState, useEffect} from "react";
 import { makeStyles } from '@material-ui/core/styles';
-// import Element from "./Element";
 import "./table.css";
 import CheckIcon from '@material-ui/icons/Check';
-import BlockIcon from '@material-ui/icons/Block';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
