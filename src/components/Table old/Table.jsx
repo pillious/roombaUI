@@ -1,6 +1,5 @@
 import React from "react";
 import {useState, useEffect} from "react";
-import axios from "axios";
 import TBody from "./TBody";
 import "./table.css";
 

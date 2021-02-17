@@ -5,7 +5,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import SpeedIcon from '@material-ui/icons/Speed';
-import { IconButton, Divider, Button } from "@material-ui/core";
+import { IconButton, Divider, Button, Tooltip  } from "@material-ui/core";
 import HorizontalSlider from "./HorizontalSlider";
 import "./controls.css";
 import * as api from "../../services/api";
@@ -155,7 +155,7 @@ function Controls(props) {
                 </div>
             </div>
             <div className="sliderWrapper">
-                <HorizontalSlider onSliderChange={(speed) => {speedPercentage.current = speed}} label={<SpeedIcon />} minVal={0} maxVal={100} step={20} defaultVal={speedPercentage.current}/>
+                <HorizontalSlider onSliderChange={(speed) => {speedPercentage.current = speed}} label={<Tooltip title="Speed (%)" placement="top"><SpeedIcon /></Tooltip>} minVal={0} maxVal={100} step={20} defaultVal={speedPercentage.current}/>
                 <Divider orientation="horizontal" className={classes.divider} />
                 <HorizontalSlider onSliderChange={(val) => {brushPercentage.current = val}} label="P" minVal={0} maxVal={100} step={25} defaultVal={brushPercentage.current}/>
                 <HorizontalSlider onSliderChange={(val) => {sideBrushPercentage.current = val}} label="W" minVal={0} maxVal={100} step={25} defaultVal={sideBrushPercentage.current}/>

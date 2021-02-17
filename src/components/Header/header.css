@@ -7,8 +7,25 @@
 .div-header-wrapper .header {
     flex: 1;
     display: flex;
+    align-items: center;
+    justify-content: left;
 }
 
 .div-header-wrapper .header div{
     margin: auto;
+}
+
+.data-table {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.data-row {
+    display: flex;
+    font-size: 0.875rem;
+}
+
+.data-row div {
+    padding-right: 3px;
 }

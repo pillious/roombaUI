@@ -61,7 +61,7 @@ function splitData(data) {
 
 export async function sendCommand(command) {
     console.log("submitting command: " + command);
-    var result = await axios.post("http://192.168.1.106:3000/api", {"command": command});
+    var result = await axios.post(`http://${process.env.REACT_APP_SERVERURL}:${process.env.REACT_APP_PORT}/api`, {"command": command});
     console.log(result.data);
 
     return result;

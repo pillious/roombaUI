@@ -1,35 +1,48 @@
-import React, {useState, useEffect} from "react";
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import "./header.css";
-import Paper from "@material-ui/core/Paper";
+import React from "react";
+import AdbIcon from '@material-ui/icons/Adb';
+import {Paper, Divider} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import Element from "./Element";
+import "./header.css";
+import { findByLabelText } from "@testing-library/react";
 
 const useStyles = makeStyles((theme) => ({
     paperStyle: {
         padding: theme.spacing(1),  
+        height: 40,
     },
+    icon: {
+        fontSize: 60,
+    },
+    divider: {
+        margin: "3px 0"
+    }
 }));
 
 function Header(props) {
-    const {paperStyle} = useStyles();
+    const classes = useStyles();
 
     return (
         <div className="div-header-wrapper">
-            <Paper className={paperStyle} elevation={5}>
-                <Element key="isAlive" label="isAlive" value={props.data.isAlive}></Element>
-                <Element key="oiMode" label="oiMode" value={props.data.oiMode}></Element>
-                <Element key="chargingSource" label="chargingSource" value={props.data.chargingSource}></Element>
-            </Paper>
             <div className="header">
-                <div>Roooooooomba</div>
+                <AdbIcon className={classes.icon} />
             </div>
-            <Paper className={paperStyle} elevation={5}>
-                <Element key="battery" label="Battery" value={props.data.batteryCharge + "/" + props.data.batteryCapacity}></Element>
-                <Element key="current" label="Current" value={props.data.current}></Element>
-                <Element key="voltage" label="Voltage" value={props.data.voltage}></Element>
-                <Element key="temperature" label="Temperature" value={props.data.temperature}></Element>
-            </Paper>
+            <div className="data-table">
+                <Paper className={classes.paperStyle} elevation={5}>
+                    <div className="data-row">
+                        <Element key="isAlive" label="isAlive" value={props.data.isAlive}></Element>
+                        <Element key="oiMode" label="oiMode" value={props.data.oiMode}></Element>
+                        <Element key="chargingSource" label="chargingSource" value={props.data.chargingSource}></Element>
+                    </div>
+                    <Divider className={classes.divider} />
+                    <div className="data-row">
+                        <Element key="battery" label="Battery" value={props.data.batteryCharge + "/" + props.data.batteryCapacity}></Element>
+                        <Element key="current" label="Current" value={props.data.current}></Element>
+                        <Element key="voltage" label="Voltage" value={props.data.voltage}></Element>
+                        <Element key="temperature" label="Temperature" value={props.data.temperature}></Element>
+                    </div>
+                </Paper>
+            </div>
         </div>
     );
 }
