@@ -12,6 +12,7 @@ import SpeedIcon from '@material-ui/icons/Speed';
 const useStyles = makeStyles({
     root: {
       width: 250,
+      height: 34,
       fontFamily: ["Roboto"],
     },
     input: {
