@@ -19,11 +19,9 @@ const useStyles = makeStyles({
         flexDirection: "row",
     },
     table: {
-        minWidth: 330,
+        width: 250,
     },
     tableRow: {
-        height: 37,
-
         "& .MuiTableCell-root": {
             padding: "6px 16px",
         }
@@ -40,24 +38,17 @@ function DataTable(props) {
     const classes = useStyles();
 
     function createData(name, rawValue, rawBoolean) {
-        let boolIcon;
+        let boolIcon = "-";
         let value = rawValue;
-    
-        switch (rawBoolean) {
-            case "true":
-                boolIcon = <CheckIcon className={classes.checkIcon} />;
-                break;
-            case "-":
-                boolIcon = <BlockIcon className={classes.blockIcon} />;
-                break;
-            default:
-                boolIcon = "";
-                break; 
+
+        if (rawBoolean === "true") {
+            boolIcon = <CheckIcon className={classes.checkIcon} />;
         }
-    
-        if (rawValue === "-") {
-            value = <BlockIcon className={classes.blockIcon} />
+        else if (rawBoolean === "false") {
+            boolIcon = "";
         }
+
+
     
         return { name, value, boolIcon};
     }

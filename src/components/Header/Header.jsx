@@ -25,7 +25,7 @@ function Header(props) {
                 <div>Roooooooomba</div>
             </div>
             <Paper className={paperStyle} elevation={5}>
-                <Element key="battery" label="Battery" value={props.data.batteryCapacity + "/" + props.data.batteryCharge}></Element>
+                <Element key="battery" label="Battery" value={props.data.batteryCharge + "/" + props.data.batteryCapacity}></Element>
                 <Element key="current" label="Current" value={props.data.current}></Element>
                 <Element key="voltage" label="Voltage" value={props.data.voltage}></Element>
                 <Element key="temperature" label="Temperature" value={props.data.temperature}></Element>

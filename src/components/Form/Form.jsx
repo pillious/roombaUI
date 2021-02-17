@@ -23,7 +23,7 @@ function Form(props) {
         <div className="formWrapper">
             <div className="customWrapper">
                 <Input value={props.inputValue} onChange={(value) => props.onInputChange(value)}></Input>
-                <Submit onSubmit={(command) => props.onSubmit(command)} command="custom" label="send" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
+                <Submit onSubmit={(command) => props.onSubmit(command)} command="custom" label="send" color="primary"></Submit>
             </div>
             <div>
                 <ButtonGroup onClick={(command) => props.onSubmit(command)}></ButtonGroup>

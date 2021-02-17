@@ -10,14 +10,15 @@ function ButtonGroup(props) {
 
     return (
         <div className="btnGroup">
-            <Submit onSubmit={handleSubmit} command="RESET" label="RESET" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
-            <Submit onSubmit={handleSubmit} command="DOCK" label="DOCK" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
-            <Submit onSubmit={handleSubmit} command="CLEAN" label="CLEAN" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
-            <Submit onSubmit={handleSubmit} command="FULL" label="FULL" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
-            <Submit onSubmit={handleSubmit} command="PASSIVE" label="PASSIVE" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
-            <Submit onSubmit={handleSubmit} command="SAFE" label="SAFE" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
-            <Submit onSubmit={handleSubmit} command="OFF" label="OFF" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
-            <Submit onSubmit={handleSubmit} command="WAKEUP" label="WAKEUP" textColor="#fff" bgColor="#ffb300" bgColorHover="#ffa000"></Submit>
+            <Submit onSubmit={handleSubmit} command="RESET" label="RESET" color="primary"></Submit>
+            <Submit onSubmit={handleSubmit} command="DOCK" label="DOCK" color="primary"></Submit>
+            <Submit onSubmit={handleSubmit} command="CLEAN" label="CLEAN" color="primary"></Submit>
+            <Submit onSubmit={handleSubmit} command="FULL" label="FULL" color="primary"></Submit>
+            <Submit onSubmit={handleSubmit} command="PASSIVE" label="PASSIVE" color="primary"></Submit>
+            <Submit onSubmit={handleSubmit} command="SAFE" label="SAFE" color="primary"></Submit>
+            <Submit onSubmit={handleSubmit} command="OFF" label="OFF" color="primary"></Submit>
+            <Submit onSubmit={handleSubmit} command="WAKEUP" label="WAKEUP" color="primary"></Submit>
+            <Submit onSubmit={handleSubmit} command="EMO" label="STOP" color="secondary"></Submit>
         </div>        
     );
 }
