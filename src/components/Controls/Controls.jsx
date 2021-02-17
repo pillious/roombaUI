@@ -124,10 +124,10 @@ function Controls(props) {
 
                 <IconButton
                     color="secondary"
-                    onMouseDown={() => onKeyDown("BtnLeft")}
-                    onMouseUp={() => onKeyUp("BtnLeft")}
-                    onTouchStart={() => onKeyDown("BtnLeft")}
-                    onTouchEnd={() => onKeyUp("BtnLeft")}
+                    onMouseDown={() => onKeyDown("BtnRight")}
+                    onMouseUp={() => onKeyUp("BtnRight")}
+                    onTouchStart={() => onKeyDown("BtnRight")}
+                    onTouchEnd={() => onKeyUp("BtnRight")}
                 >
                     <KeyboardArrowRightIcon className={classes.arrowIcon} />
                 </IconButton>
@@ -144,10 +144,10 @@ function Controls(props) {
 
                 <IconButton
                     color="secondary"
-                    onMouseDown={() => onKeyDown("BtnRight")}
-                    onMouseUp={() => onKeyUp("BtnRight")}
-                    onTouchStart={() => onKeyDown("BtnRight")}
-                    onTouchEnd={() => onKeyUp("BtnRight")}
+                    onMouseDown={() => onKeyDown("BtnLeft")}
+                    onMouseUp={() => onKeyUp("BtnLeft")}
+                    onTouchStart={() => onKeyDown("BtnLeft")}
+                    onTouchEnd={() => onKeyUp("BtnLeft")}
                 >
                     <KeyboardArrowLeftIcon className={classes.arrowIcon} />
                 </IconButton>
