@@ -39,7 +39,13 @@ function App() {
 
   // runs once to initialize websocket.
   useEffect(() => {
-    const ws = new WebSocket("ws://192.168.1.106:8888");
+    result = await axios.post(`http://${process.env.REACT_APP_SERVERURL}:${process.env.REACT_APP_PORT}/api`, {"command": command}); 
+    let ws;
+    if (process.env.REACT_WS_PORT) {
+      ws = new WebSocket(`ws://{process.env.REACT_APP_SERVERURL}:{process.env.REACT_WS_PORT}`);
+    } else {
+      ws = new WebSocket(`ws://{process.env.REACT_APP_SERVERURL}`);
+    }
     ws.onopen = () => console.log("ws opened.");
     ws.onclose = () => console.log("ws closed.");
     ws.onmessage = e => updateData(e);
