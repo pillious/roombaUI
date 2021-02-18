@@ -40,10 +40,10 @@ function App() {
   // runs once to initialize websocket.
   useEffect(() => {
     let ws;
-    if (process.env.REACT_WS_PORT) {
-      ws = new WebSocket(`ws://{process.env.REACT_APP_SERVERURL}:{process.env.REACT_WS_PORT}`);
+    if (process.env.REACT_APP_WSPORT) {
+      ws = new WebSocket(`ws://${process.env.REACT_APP_SERVERURL}:${process.env.REACT_APP_WSPORT}`);
     } else {
-      ws = new WebSocket(`ws://{process.env.REACT_APP_SERVERURL}`);
+      ws = new WebSocket(`ws://${process.env.REACT_APP_SERVERURL}`);
     }
     ws.onopen = () => console.log("ws opened.");
     ws.onclose = () => console.log("ws closed.");
