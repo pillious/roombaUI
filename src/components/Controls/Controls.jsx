@@ -106,6 +106,10 @@ function Controls(props) {
         api.sendCommand(`PWM ${brushPercentage.current} ${sideBrushPercentage.current} ${vacPercentage.current}`);
     }
 
+    function sendEMO() {
+        api.sendCommand("EMO");
+    }
+
     return (
     <div className="container" tabIndex="0" onKeyDown={(e) => onKeyDown(e.code)} onKeyUp={(e) => onKeyUp(e.code)}>
         <div className="controlsWrapper">
@@ -160,7 +164,10 @@ function Controls(props) {
                 <HorizontalSlider onSliderChange={(val) => {brushPercentage.current = val}} label="P" minVal={0} maxVal={100} step={25} defaultVal={brushPercentage.current}/>
                 <HorizontalSlider onSliderChange={(val) => {sideBrushPercentage.current = val}} label="W" minVal={0} maxVal={100} step={25} defaultVal={sideBrushPercentage.current}/>
                 <HorizontalSlider onSliderChange={(val) => {vacPercentage.current = val}} label="M" minVal={0} maxVal={100} step={25} defaultVal={vacPercentage.current}/>
-                <Button variant="contained" color="primary" size="medium" onClick={sendPWM}>Set PWM</Button>
+                <div className="buttonsWrapper">
+                    <Button variant="contained" color="primary" size="medium" onClick={sendPWM}>Set PWM</Button>
+                    <Button variant="contained" color="secondary" size="medium" onClick={sendEMO}>Stop</Button>
+                </div>
             </div>
         </div>
     </div>

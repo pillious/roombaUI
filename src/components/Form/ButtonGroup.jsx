@@ -18,7 +18,6 @@ function ButtonGroup(props) {
             <Submit onSubmit={handleSubmit} command="SAFE" label="SAFE" color="primary"></Submit>
             <Submit onSubmit={handleSubmit} command="OFF" label="OFF" color="primary"></Submit>
             <Submit onSubmit={handleSubmit} command="WAKEUP" label="WAKEUP" color="primary"></Submit>
-            <Submit onSubmit={handleSubmit} command="EMO" label="STOP" color="secondary"></Submit>
         </div>        
     );
 }
