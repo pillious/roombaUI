@@ -63,6 +63,26 @@ function Header(props) {
         }
     }
 
+    function createChargingSourceElement() {
+        var chargingSource = parseInt(props.data.chargingSource);
+        var value;
+        switch (chargingSource) {
+            case 0:
+                value = 'None';
+                break;
+            case 1:
+                value = 'Internal';
+                break;
+            case 2:
+                value = 'Dock';
+                break;
+            default: 
+                value = 'N/A';
+                break;
+        }
+        return <Element key="chargingSource" label="chargingSource" value={value}></Element>
+    }
+
     return (
         <div className="div-header-wrapper">
             <div className="header">
@@ -71,15 +91,15 @@ function Header(props) {
             <div className="data-table">
                 <Paper className={classes.paperStyle} elevation={5}>
                     <div className="data-row">
-                        <Element key="isAlive" label="isAlive" value={props.data.isAlive ? props.data.isAlive : "NaN"}></Element>
+                        <Element key="isAlive" label="Awake?" value={props.data.isAlive ? props.data.isAlive : "N/A"}></Element>
                         {createOiModeElement()}
-                        <Element key="chargingSource" label="chargingSource" value={props.data.chargingSource}></Element>
+                        {createChargingSourceElement()}
                     </div>
                     <Divider className={classes.divider} />
                     <div className="data-row">
                         {createBatteryElement()}
                         <Element key="current" label="Current" value={props.data.current}></Element>
-                        <Element key="voltage" label="Voltage" value={props.data.voltage}></Element>
+                        <Element key="voltage" label="Voltage" value={(parseInt(props.data.voltage)/1000.0).toFixed(1)}></Element>
                         <Element key="temperature" label="Temperature" value={props.data.temperature}></Element>
                     </div>
                 </Paper>

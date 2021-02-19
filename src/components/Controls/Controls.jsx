@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useRef, useState} from "react";
 import {makeStyles} from "@material-ui/core/styles"; 
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
@@ -21,6 +21,11 @@ const useStyles = makeStyles({
 
 function Controls(props) {
     const classes = useStyles();
+
+    const [isForward, setIsForward] = useState(false);
+    const [isBackward, setIsBackward] = useState(false);
+    const [isLeft, setIsLeft] = useState(false);
+    const [isRight, setIsRight] = useState(false);
 
     const speedPercentage = useRef(40);
     const radius = useRef(0);
@@ -59,15 +64,19 @@ function Controls(props) {
         let command;
         if (direction === "FORWARD") {
             command = `DRIVE ${speedPercentage.current} ${radius.current}`;
+            setIsForward(true);
         }
         else if (direction === "BACKWARD") {
             command = `DRIVE -${speedPercentage.current} ${radius.current}`;
+            setIsBackward(true);
         }
         else if (direction === "LEFT") {
             command = `DRIVE ${speedPercentage.current} 1`;
+            setIsLeft(true);
         }
         else if (direction === "RIGHT") {
             command = `DRIVE ${speedPercentage.current} -1`;
+            setIsRight(true);
         }
 
         if (command) {
@@ -76,6 +85,11 @@ function Controls(props) {
     }
 
     function stopMotion() {
+        setIsForward(false);
+        setIsBackward(false);
+        setIsLeft(false);
+        setIsRight(false);
+
         api.sendCommand("DRIVE 0 0");
     }
 
@@ -118,6 +132,7 @@ function Controls(props) {
 
                 <IconButton
                     color="secondary"
+                    className={isForward ? "active" : false}
                     onMouseDown={() => onKeyDown("BtnUp")}
                     onMouseUp={() => onKeyUp("BtnUp")}
                     onMouseLeave={() => onKeyUp("BtnUp")}
@@ -130,6 +145,7 @@ function Controls(props) {
 
                 <IconButton
                     color="secondary"
+                    className={isRight ? "active" : false}
                     onMouseDown={() => onKeyDown("BtnRight")}
                     onMouseUp={() => onKeyUp("BtnRight")}
                     onMouseLeave={() => onKeyUp("BtnRight")}
@@ -142,6 +158,7 @@ function Controls(props) {
 
                 <IconButton
                     color="secondary"
+                    className={isBackward ? "active" : false}
                     onMouseDown={() => onKeyDown("BtnDown")}
                     onMouseUp={() => onKeyUp("BtnDown")}
                     onMouseLeave={() => onKeyUp("BtnDown")}
@@ -154,6 +171,7 @@ function Controls(props) {
 
                 <IconButton
                     color="secondary"
+                    className={isLeft ? "active" : false}
                     onMouseDown={() => onKeyDown("BtnLeft")}
                     onMouseUp={() => onKeyUp("BtnLeft")}
                     onMouseLeave={() => onKeyUp("BtnLeft")}

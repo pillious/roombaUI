@@ -16,7 +16,7 @@ const useStyles = makeStyles({
         flexDirection: "row",
     },
     table: {
-        width: 250,
+        width: 262,
     },
     tableRow: {
         "& .MuiTableCell-root": {
@@ -51,40 +51,44 @@ function DataTable(props) {
     }
 
     const rows1 = [
-        createData("Left Bumper", props.data.leftLightBumper, props.data.isLeftLightBumper),
-        createData("Front Left Bumper", props.data.frontLeftLightBumper, props.data.isFrontLeftLightBumper),
-        createData("Center Left Bumper", props.data.centerLeftLightBumper,props.data.isCenterLeftLightBumper),
-        createData("Center Right Bumper", props.data.centerRightLightBumper, props.data.isCenterRightLightBumper),
-        createData("Front Right Bumper", props.data.frontRightLightBumper, props.data.isFrontRightLightBumper),
-        createData("Right Bumper", props.data.rightLightBumper, props.data.isRightLightBumper),
+        createData("L Bumper", props.data.leftLightBumper, props.data.isLeftLightBumper),
+        createData("F-L Bumper", props.data.frontLeftLightBumper, props.data.isFrontLeftLightBumper),
+        createData("C-L Bumper", props.data.centerLeftLightBumper,props.data.isCenterLeftLightBumper),
+        createData("C-R Bumper", props.data.centerRightLightBumper, props.data.isCenterRightLightBumper),
+        createData("F-R Bumper", props.data.frontRightLightBumper, props.data.isFrontRightLightBumper),
+        createData("R Bumper", props.data.rightLightBumper, props.data.isRightLightBumper),
 
-        createData("Left Bump", "-", props.data.isLeftBump),
-        createData("Right Bump", "-", props.data.isRightBump),
-        createData("Wheel Left Drop", "-", props.data.isWheelLeftDrop),
-        createData("Wheel Right Drop", "-", props.data.isWheelRightDrop),
+        createData("L Bump", "-", props.data.isLeftBump),
+        createData("R Bump", "-", props.data.isRightBump),
+        createData("Wheel L Drop", "-", props.data.isWheelLeftDrop),
+        createData("Wheel R Drop", "-", props.data.isWheelRightDrop),
 
-        createData("Left Cliff", props.data.cliffLeftSignal, props.data.isCliffLeft),
-        createData("Front Left Cliff", props.data.cliffFrontLeftSignal, props.data.isCliffFrontLeft),
-        createData("Front Right Cliff", props.data.cliffFrontRightSignal, props.data.isCliffFrontRight),
-        createData("Right Cliff", props.data.cliffRightSignal, props.data.isCliffRight),
+        createData("L Cliff", props.data.cliffLeftSignal, props.data.isCliffLeft),
+        createData("F-L Cliff", props.data.cliffFrontLeftSignal, props.data.isCliffFrontLeft),
+        createData("F-R Cliff", props.data.cliffFrontRightSignal, props.data.isCliffFrontRight),
+        createData("R Cliff", props.data.cliffRightSignal, props.data.isCliffRight),
         createData("Wall", "-", props.data.isWall),
         createData("Virtual Wall", "-", props.data.isVirtualWall),
+        createData("stasis", props.data.stasis, "-"),
     ];
 
     const rows2 = [
-        createData("Left Motor Current", props.data.leftMotorCurrent, props.data.isLeftWheelOverCurrent),
-        createData("Right Motor Current", props.data.rightMotorCurrent, props.data.isRightWheelOverCurrent),
+        createData("L Motor Current", props.data.leftMotorCurrent, props.data.isLeftWheelOverCurrent),
+        createData("R Motor Current", props.data.rightMotorCurrent, props.data.isRightWheelOverCurrent),
         createData("Main Brush Current", props.data.mainBrushCurrent, props.data.isMainBrushOverCurrent),
         createData("Side Brush Current", props.data.sideBrushCurrent, props.data.isSideBrushOverCurrent),
 
         createData("Velocity", props.data.requestedVelocity, "-"),
         createData("Radius", props.data.requestedRadius, "-"),
-        createData("Left Velocity", props.data.requestedLeftVelocity, "-"),
-        createData("Right Velocity", props.data.requestedRightVelocity, "-"),
-        createData("Left Encoder Counts", props.data.leftEncoderCounts, "-"),
-        createData("Right Encoder Counts", props.data.rightEncoderCounts, "-"),
+        createData("L Velocity", props.data.requestedLeftVelocity, "-"),
+        createData("R Velocity", props.data.requestedRightVelocity, "-"),
+        createData("L Encoder", props.data.leftEncoderCounts, "-"),
+        createData("R Encoder", props.data.rightEncoderCounts, "-"),
         createData("Distance", props.data.distance, "-"),
         createData("Angle", props.data.angle, "-"),
+        createData("IR omni char", props.data.irCharacterOmni, "-"),
+        createData("IR L char", props.data.irCharacterLeft, "-"),
+        createData("IR R char", props.data.irCharacterRight, "-"),
     ];
 
     return (
