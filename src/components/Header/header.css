@@ -23,9 +23,20 @@
 
 .data-row {
     display: flex;
+    align-items: flex-start;
     font-size: 0.875rem;
 }
 
 .data-row div {
     padding-right: 3px;
+}
+
+.data-row .MuiSvgIcon-root {
+    transform: rotate(90deg) translateX(-3px);
+
+}
+
+.property {
+    display: flex;
+    align-items: flex-start;
 }

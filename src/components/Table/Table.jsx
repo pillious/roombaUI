@@ -35,14 +35,14 @@ function DataTable(props) {
     const classes = useStyles();
 
     function createData(name, rawValue, rawBoolean) {
-        let boolIcon = "-";
+        let boolIcon = "";
         let value = rawValue;
 
         if (rawBoolean === "true") {
             boolIcon = <CheckIcon className={classes.checkIcon} />;
         }
-        else if (rawBoolean === "false") {
-            boolIcon = "";
+        else if (rawBoolean === "-") {
+            boolIcon = "-";
         }
 
 

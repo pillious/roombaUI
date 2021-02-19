@@ -4,9 +4,10 @@ import "./header.css";
 function Element(props) {
     return (
         <div>
-            <div>
-                <span>{props.label}</span>: <span>{props.value}</span>
-            </div>
+            <div className="property">
+                <div>{props.label}: </div>
+                <div>{props.value} </div> 
+            </div>    
         </div>
     );
 }
