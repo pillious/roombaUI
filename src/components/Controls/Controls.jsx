@@ -120,8 +120,10 @@ function Controls(props) {
                     color="secondary"
                     onMouseDown={() => onKeyDown("BtnUp")}
                     onMouseUp={() => onKeyUp("BtnUp")}
+                    onMouseLeave={() => onKeyUp("BtnUp")}
                     onTouchStart={() => onKeyDown("BtnUp")}
                     onTouchEnd={() => onKeyUp("BtnUp")}
+                    onTouchCancel={() => onKeyUp("BtnUp")}
                 >
                     <KeyboardArrowUpIcon className={classes.arrowIcon} />
                 </IconButton>
@@ -130,8 +132,10 @@ function Controls(props) {
                     color="secondary"
                     onMouseDown={() => onKeyDown("BtnRight")}
                     onMouseUp={() => onKeyUp("BtnRight")}
+                    onMouseLeave={() => onKeyUp("BtnRight")}
                     onTouchStart={() => onKeyDown("BtnRight")}
                     onTouchEnd={() => onKeyUp("BtnRight")}
+                    onTouchCancel={() => onKeyUp("BtnRight")}
                 >
                     <KeyboardArrowRightIcon className={classes.arrowIcon} />
                 </IconButton>
@@ -140,8 +144,10 @@ function Controls(props) {
                     color="secondary"
                     onMouseDown={() => onKeyDown("BtnDown")}
                     onMouseUp={() => onKeyUp("BtnDown")}
+                    onMouseLeave={() => onKeyUp("BtnDown")}
                     onTouchStart={() => onKeyDown("BtnDown")}
                     onTouchEnd={() => onKeyUp("BtnDown")}
+                    onTouchCancel={() => onKeyUp("BtnDown")}
                 >
                     <KeyboardArrowDownIcon className={classes.arrowIcon} />
                 </IconButton>
@@ -150,8 +156,10 @@ function Controls(props) {
                     color="secondary"
                     onMouseDown={() => onKeyDown("BtnLeft")}
                     onMouseUp={() => onKeyUp("BtnLeft")}
+                    onMouseLeave={() => onKeyUp("BtnLeft")}
                     onTouchStart={() => onKeyDown("BtnLeft")}
                     onTouchEnd={() => onKeyUp("BtnLeft")}
+                    onTouchCancel={() => onKeyUp("BtnLeft")}
                 >
                     <KeyboardArrowLeftIcon className={classes.arrowIcon} />
                 </IconButton>
