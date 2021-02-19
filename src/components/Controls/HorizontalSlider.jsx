@@ -51,6 +51,7 @@ function HorizontalSlider(props) {
                         onChange={handleSliderChange}
                         aria-labelledby="input-slider"
                         step={props.step}
+                        
 
                     />
                     </Grid>

@@ -51,14 +51,13 @@ function splitData(data) {
 }
 
 export async function sendCommand(command) {
-    console.log("submitting command: " + command);
+    // console.log("submitting command: " + command);
     var result;
     if (process.env.REACT_APP_PORT) {
         result = await axios.post(`http://${process.env.REACT_APP_SERVERURL}:${process.env.REACT_APP_PORT}/api`, {"command": command}); 
     } else {
         result = await axios.post(`http://${process.env.REACT_APP_SERVERURL}/api`, {"command": command}); 
     }
-    console.log(result.data);
 
     return result;
 }

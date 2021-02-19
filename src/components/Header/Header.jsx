@@ -42,6 +42,7 @@ function Header(props) {
     }
 
     function batteryIcon(isCharging, percentFull) {
+
         if (!isCharging) {
             if (percentFull <= 5) return <BatteryAlert />;
             else if (percentFull <= 20) return <Battery20 />;
@@ -49,8 +50,8 @@ function Header(props) {
             else if (percentFull <= 50) return <Battery50 />;
             else if (percentFull <= 60) return <Battery60 />;
             else if (percentFull <= 80) return <Battery80 />;
-            else if (percentFull <= 90) return <Battery90 />;
-            else if (percentFull === 100) return <BatteryFull />;               
+            else if (percentFull < 100) return <Battery90 />;
+            else if (percentFull >= 100) return <BatteryFull />;               
         }
         else {
             if (percentFull <= 20) return <BatteryCharging20 />;
@@ -58,8 +59,8 @@ function Header(props) {
             else if (percentFull <= 50) return <BatteryCharging50 />;
             else if (percentFull <= 60) return <BatteryCharging60 />;
             else if (percentFull <= 80) return <BatteryCharging80 />;
-            else if (percentFull <= 90) return <BatteryCharging90 />;
-            else if (percentFull === 100) return <BatteryChargingFull />;
+            else if (percentFull < 100) return <BatteryCharging90 />;
+            else if (percentFull >= 100) return <BatteryChargingFull />;
         }
     }
 
